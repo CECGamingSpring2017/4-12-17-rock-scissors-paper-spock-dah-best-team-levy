@@ -130,7 +130,7 @@ void logic() {
 			cout << "Lizard Poisons Spock" << endl;
 			cout << "AI WINS" << endl;
 		}
-		else if (inputAI == "ROCK") {
+		else if (inputAI == "SPOCK") {
 			cout << "It's a Tie" << endl;
 		}
 		else
