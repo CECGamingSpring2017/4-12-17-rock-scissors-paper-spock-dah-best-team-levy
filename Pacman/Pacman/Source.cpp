@@ -199,8 +199,9 @@ int main()
 	Medina = al_load_bitmap("Medina.png");
 	al_convert_mask_to_alpha(Medina, al_map_rgb(0, 255, 0));
 	Mo = al_load_bitmap("Mo2.png");
-	al_convert_mask_to_alpha(Medina, al_map_rgb(0, 255, 0));
+	al_convert_mask_to_alpha(Mo, al_map_rgb(0, 255, 0));
 	Moback = al_load_bitmap("Mo.png");
+	al_convert_mask_to_alpha(Mo, al_map_rgb(255, 255, 255));
 	/////////////////INSTANTIATE////////////////////
 	ghost blinky;
 	blinky.initGhost(365, 600, 'r', dir, false, 4.0, Blinky);
@@ -262,15 +263,15 @@ int main()
 		al_play_sample(sample4, .35, 0.0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 
 		//////////////////////DEATH/////////////////////
-		if (lives == 0) {
+		if (lives <= 0) {
 			al_destroy_sample(sample4);
 			al_destroy_sample_instance(instance4);
 			al_rest(1);
 			al_play_sample_instance(instance5);
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_flip_display();
-			al_draw_textf(barq, al_map_rgb(255, 255, 255), 130, 0, ALLEGRO_ALIGN_CENTRE, "%d", score);
-			al_flip_display();
+			/*al_draw_textf(barq, al_map_rgb(255, 255, 255), 130, 0, ALLEGRO_ALIGN_CENTRE, "%d", score);
+			al_flip_display();*/
 			al_draw_bitmap(Moback, 0, 0, 0);
 			al_flip_display();
 			al_rest(1);
@@ -278,6 +279,7 @@ int main()
 				int rand1 = rand() % 750 + 0;
 				int rand2 = rand() % 750 + 0;
 				al_draw_bitmap(Mo, rand1, rand2, 0);
+				al_rest(0.5);
 			}
 			al_draw_text(barq, al_map_rgb(414, 255, 1), SCREEN_W / 2, SCREEN_H / 2 - 100, ALLEGRO_ALIGN_CENTRE, "Game Over");
 			al_flip_display();
